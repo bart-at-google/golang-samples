@@ -24,20 +24,16 @@ import (
 )
 
 func main() {
-	if len(os.Args) <= 4 {
-		fmt.Println("Usage: Must include 3 arguments for projectID, locationID, and queueID")
+	if len(os.Args) != 5 {
+		fmt.Println("Usage: Must include 4 arguments for projectID, locationID, queueID, and url")
 		os.Exit(1)
 	}
 	projectID := os.Args[1]
 	locationID := os.Args[2]
 	queueID := os.Args[3]
+	url := os.Args[4]
 
-	message := ""
-	if len(os.Args) > 4 {
-		message = os.Args[4]
-	}
-
-	task, err := createTask(projectID, locationID, queueID, message)
+	task, err := createTask(projectID, locationID, queueID, url)
 	if err != nil {
 		log.Fatalf("createTask: %v", err)
 	}
